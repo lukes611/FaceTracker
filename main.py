@@ -1,7 +1,24 @@
 import numpy as np
 import cv2
 from LFaceDetect import LukesFaceDetector
+from LVector import LVector
 
+'''
+What to do:
+1. face tracking rather than just searching
+	need colors based on id
+	vector obj
+	rect obj
+	feature/s detection and saving for faces
+	database
+	ability to add names to faces
+	ability to connect over network
+'''
+a = LVector(1,2,3)
+b = LVector(2,4,0)
+c = LVector(2, 6, 0)
+print c.dist(b), b.dist(c), a.dist(b)
+'''
 #init video capture object
 cap = cv2.VideoCapture(0)
 
@@ -30,3 +47,4 @@ while True:
 #free resources		
 cap.release()
 cv2.destroyAllWindows()
+'''
