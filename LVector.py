@@ -31,6 +31,8 @@ class LVector:
 			return self.combineFilterClone(v2, lambda x, y : x * y)
 		else:
 			return self.filterClone(lambda x: x * v2)
+	def __div__(self, v2):
+		return self.filterClone(lambda x: x / v2)
 	def mag(self):
 		return math.sqrt(self.dot(self))
 	def dist(self, v2):
@@ -52,4 +54,8 @@ class LVector:
 		rv = self.clone()
 		for i in range(rv.size()): rv.data[i] = f(rv.data[i],v2.data[i])
 		return rv
+	def __getitem__(self, index):
+		return self.data[index]
+	def __setitem__(self, index, value):
+		self.data[index] = value
 		
