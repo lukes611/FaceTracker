@@ -20,7 +20,7 @@ class LRect:
 	def hwh(self):
 		return LVector(self.w, self.h) * 0.5
 	def center(self):
-		return (self.pos()+self.wh()) / 2
+		return (self.pos()+self.hwh())
 	def toString(self):
 		return '[x={0},y={1},width={2},height={3}]'.format(*self.toList())
 	def __str__(self):
@@ -42,12 +42,10 @@ class LRect:
 	def interpolateTo(self, r2, t):
 		c = self.center()
 		wh = self.wh()
-		cChange = c.interpolateTo(r2.center(), t)
-		whChange = wh.interpolateTo(r2.wh(), t)
+		c.interpolateTo(r2.center(), t)
+		wh.interpolateTo(r2.wh(), t)
 		self.w, self.h = wh[0], wh[1]
 		self.setFromCenter(c)
-		wChange = wh / (wh - whChange)
-		return cChange, whChange
 		
 		
 		

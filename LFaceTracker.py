@@ -24,10 +24,9 @@ class LukesFaceTracker:
 		id %= self.colors.size()
 		return self.colors[id]
 	def update(self, newFaces):
-		print self.idCount
 		toAdd = [True] * len(newFaces)
 		for i, f in enumerate(self.faces):
-			v = f.update(newFaces, 4)
+			v = f.update(newFaces)
 			if v != -1:
 				toAdd[v] = False
 		for i, f in enumerate(newFaces):
@@ -35,10 +34,13 @@ class LukesFaceTracker:
 				nf = f.clone()
 				nf.id = self.newId()
 				self.faces.append(nf)
+		self.removeDeadFaces(5)
 	def rect(self, img, r, col):
 		cv2.rectangle(img,(int(r.x),int(r.y)),(int(r.x+r.w),int(r.y+r.h)),col,2)
 	#draw faces on img
 	def draw(self, img):
 		for f in self.faces:
-			self.rect(img, f.face, (255, 0, 0))
+			self.rect(img, f.face, self.colorById(f.id))
+	def removeDeadFaces(self, missingTicksComparison = 30):
+		self.faces = [f for f in self.faces if f.missingTicks < missingTicksComparison]
 	
