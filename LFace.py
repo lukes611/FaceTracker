@@ -21,7 +21,7 @@ class LFace:
 		self.eyes = [e.clone() for e in f2.eyes]
 		self.id = f2.id
 		self.missintTicks = f2.missingTicks
-		self.velocity = f2.veclocity.clone()
+		self.velocity = f2.velocity.clone()
 	def dist(self, f2, scalar1 = 1.0, scalar2 = 0.2):
 		#distance is defined as: center differences * scalar1 + size differences * scalar2
 		d1 = self.face.center().dist(f2.face.center())
@@ -34,9 +34,9 @@ class LFace:
 		rv = self.clone()
 		p = rv.face.center()
 		oldP = p.clone()
-		p += self.velocity()
+		p += self.velocity
 		rv.velocity = self.velocity.clone()
-		rv.setFromCenter(p)
+		rv.face.setFromCenter(p)
 		return rv
 	def update(self, newFaces, maxDist = 10.0):
 		#checks for possible, matches, if match found: returns index else -1 
@@ -57,3 +57,4 @@ class LFace:
 		predicted = self.getPredicted()
 		predicted.interpolateTo(newFaces[match[1]], t)
 		self.setAs(predicted)
+		return match[1]

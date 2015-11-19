@@ -15,3 +15,5 @@ class ColorList:
 		return random() * scalar + (255-scalar)
 	def __getitem__(self, index):
 		return self.colors[index]
+	def size(self):
+		return len(self.colors)

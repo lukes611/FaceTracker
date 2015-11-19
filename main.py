@@ -3,6 +3,7 @@ import cv2
 from LFaceDetect import LukesFaceDetector
 from LVector import LVector
 from lrect import LRect
+from LFaceTracker import LukesFaceTracker
 
 '''
 What to do:
@@ -21,6 +22,7 @@ cap = cv2.VideoCapture(0)
 
 #create face detection object
 faceDetector = LukesFaceDetector()
+faceTracker = LukesFaceTracker()
 
 
 while True:
@@ -31,9 +33,10 @@ while True:
 
 	#detect faces
 	faceDetector.detect(frame, True)
+	faceTracker.update(faceDetector.faces)
 	
 	#mark image with rectangles around faces and eyes
-	faceDetector.draw(frame)
+	faceTracker.draw(frame)
 	
 	#show user the augmented image
 	cv2.imshow('frame', frame)

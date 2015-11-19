@@ -32,7 +32,10 @@ class LVector:
 		else:
 			return self.filterClone(lambda x: x * v2)
 	def __div__(self, v2):
-		return self.filterClone(lambda x: x / v2)
+		if isinstance(v2,LVector):
+			return self.combineFilterClone(v2, lambda x, y : x / y)
+		else:
+			return self.filterClone(lambda x: x / v2)
 	def mag(self):
 		return math.sqrt(self.dot(self))
 	def dist(self, v2):
