@@ -6,17 +6,22 @@ from lrect import LRect
 
 '''
 What to do:
-1. face tracking rather than just searching
-	need colors based on id
-	vector obj
-	rect obj
+1. face tracking rather than just searching:
+	stores a current list,
+	update matches to old faces if no match is found, else adds new ones with new ids
+	
 	feature/s detection and saving for faces
 	database
 	ability to add names to faces
 	ability to connect over network
 '''
 
-
+v1 = LVector(5,2)
+v2 = LVector(10,8)
+print v1, v2
+v1.interpolateTo(v2, 0.5)
+print v1
+'''
 #init video capture object
 cap = cv2.VideoCapture(0)
 
@@ -31,11 +36,10 @@ while True:
 	ret, frame = cap.read()
 
 	#detect faces
-	faceDetector.detect(frame)
+	faceDetector.detect(frame, True)
 	
 	#mark image with rectangles around faces and eyes
-	faceDetector.drawFaces(frame)
-	faceDetector.drawEyes(frame)
+	faceDetector.draw(frame)
 	
 	#show user the augmented image
 	cv2.imshow('frame', frame)
@@ -45,3 +49,4 @@ while True:
 #free resources		
 cap.release()
 cv2.destroyAllWindows()
+'''

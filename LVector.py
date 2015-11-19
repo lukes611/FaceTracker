@@ -58,4 +58,7 @@ class LVector:
 		return self.data[index]
 	def __setitem__(self, index, value):
 		self.data[index] = value
+	def interpolateTo(self, v2, t):
+		assert self.size() == v2.size()
+		self.combineFilter(v2, lambda x, y : (y-x)*t + x)
 		
