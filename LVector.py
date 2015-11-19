@@ -59,6 +59,10 @@ class LVector:
 	def __setitem__(self, index, value):
 		self.data[index] = value
 	def interpolateTo(self, v2, t):
+		#sets self to be the interpolation from self to v2 according to t,
+		#returns the vector of change
 		assert self.size() == v2.size()
+		old = self.clone()
 		self.combineFilter(v2, lambda x, y : (y-x)*t + x)
+		return self.__sub__(old)
 		

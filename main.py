@@ -16,12 +16,6 @@ What to do:
 	ability to connect over network
 '''
 
-v1 = LVector(5,2)
-v2 = LVector(10,8)
-print v1, v2
-v1.interpolateTo(v2, 0.5)
-print v1
-'''
 #init video capture object
 cap = cv2.VideoCapture(0)
 
@@ -49,4 +43,3 @@ while True:
 #free resources		
 cap.release()
 cv2.destroyAllWindows()
-'''

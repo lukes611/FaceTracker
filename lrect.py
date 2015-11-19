@@ -42,9 +42,12 @@ class LRect:
 	def interpolateTo(self, r2, t):
 		c = self.center()
 		wh = self.wh()
-		c.interpolateTo(r2.center(), t)
-		wh.interpolateTo(r2.wh(), t)
+		cChange = c.interpolateTo(r2.center(), t)
+		whChange = wh.interpolateTo(r2.wh(), t)
 		self.w, self.h = wh[0], wh[1]
 		self.setFromCenter(c)
+		wChange = wh / (wh - whChange)
+		return cChange, whChange
+		
 		
 		
