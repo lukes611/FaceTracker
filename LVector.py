@@ -12,6 +12,10 @@ class LVector:
 		self.data = [x for x in args]
 	def toString(self):
 		return str(self.data)
+	def toList(self):
+		return [x for x in self.data]
+	def toTuple(self):
+		return tuple(self.toList())
 	def __str__(self):
 		return self.toString()
 	def filter(self, f):
@@ -68,4 +72,6 @@ class LVector:
 		old = self.clone()
 		self.combineFilter(v2, lambda x, y : (y-x)*t + x)
 		return self.__sub__(old)
+	def round(self):
+		self.filter(lambda x: round(x))
 		

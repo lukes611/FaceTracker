@@ -40,7 +40,12 @@ class LukesFaceTracker:
 	#draw faces on img
 	def draw(self, img):
 		for f in self.faces:
-			self.rect(img, f.face, self.colorById(f.id))
+			color = self.colorById(f.id)
+			p = f.face.pos()
+			p[1] -= 10
+			p.filter(lambda x: int(round(x)))
+			self.rect(img, f.face, color)
+			cv2.putText(img, 'person.id'+str(f.id), p.toTuple(), cv2.FONT_HERSHEY_SIMPLEX, 1, tuple(color), 4)
 	def removeDeadFaces(self, missingTicksComparison = 30):
 		self.faces = [f for f in self.faces if f.missingTicks < missingTicksComparison]
 	
