@@ -8,9 +8,6 @@ from LFaceTracker import LukesFaceTracker
 '''
 What to do:
 1. face tracking rather than just searching:
-	stores a current list,
-	update matches to old faces if no match is found, else adds new ones with new ids
-	
 	feature/s detection and saving for faces
 	database
 	ability to add names to faces
