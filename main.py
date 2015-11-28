@@ -27,7 +27,10 @@ while True:
 	
 	#read frame
 	ret, frame = cap.read()
-
+	if not ret:
+		print 'Cannot gain access to web cam'
+		break
+	else: print 'Reading Frame...'
 	#detect faces
 	faceDetector.detect(frame, True)
 	faceTracker.update(faceDetector.faces)
