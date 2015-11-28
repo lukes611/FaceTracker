@@ -38,7 +38,7 @@ class LFace:
 		rv.velocity = LVector(0,0)
 		rv.face.setFromCenter(p)
 		return rv
-	def update(self, newFaces, maxDist = 60.0):
+	def update(self, newFaces, maxDist = 90.0):
 		#checks for possible, matches, if match found: returns index else -1 
 		match = [0,0]
 		isSet = False

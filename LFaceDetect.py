@@ -23,7 +23,7 @@ class LukesFaceDetector:
 		self.colors = ColorList(100)
 	def detectFaces(self, gray):
 		self.faces = []
-		faces = self.faceCascade.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30, 30))
+		faces = self.faceCascade.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(5, 5))
 		for x,y,w,h in faces:
 			self.faces.append(LFace(LRect(x,y,w,h)))
 	def detectEyes(self, gray):

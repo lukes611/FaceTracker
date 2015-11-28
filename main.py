@@ -4,6 +4,8 @@ from LFaceDetect import LukesFaceDetector
 from LVector import LVector
 from lrect import LRect
 from LFaceTracker import LukesFaceTracker
+import sys
+import os
 
 '''
 What to do:
@@ -14,8 +16,19 @@ What to do:
 	ability to connect over network
 '''
 
+
+cap = None
+
 #init video capture object
-cap = cv2.VideoCapture(0)
+#from webcam
+#or from video
+if len(sys.argv) <= 1:
+	cap = cv2.VideoCapture(0)
+elif os.path.isfile(sys.argv[1]):
+	cap = cv2.VideoCapture(sys.argv[1])
+else:
+	print 'error, cannot find specified file:', sys.argv[1]
+	sys.exit(5)
 
 #create face detection object
 faceDetector = LukesFaceDetector()
@@ -30,7 +43,7 @@ while True:
 	if not ret:
 		print 'Cannot gain access to web cam'
 		break
-	else: print 'Reading Frame...'
+	
 	#detect faces
 	faceDetector.detect(frame, True)
 	faceTracker.update(faceDetector.faces)
@@ -40,8 +53,12 @@ while True:
 	
 	#show user the augmented image
 	cv2.imshow('frame', frame)
-	if cv2.waitKey(30) == 27:
+
+	key = cv2.waitKey(30)
+
+	if key in [27, 1048603]:
 		break
+	
 
 #free resources		
 cap.release()

@@ -34,7 +34,7 @@ class LukesFaceTracker:
 				nf = f.clone()
 				nf.id = self.newId()
 				self.faces.append(nf)
-		self.removeDeadFaces(5)
+		self.removeDeadFaces(10)
 	def rect(self, img, r, col):
 		cv2.rectangle(img,(int(r.x),int(r.y)),(int(r.x+r.w),int(r.y+r.h)),col,2)
 	#draw faces on img
