@@ -45,7 +45,11 @@ class LukesFaceTracker:
 			p[1] -= 10
 			p.filter(lambda x: int(round(x)))
 			self.rect(img, f.face, color)
-			cv2.putText(img, 'person.id'+str(f.id), p.toTuple(), cv2.FONT_HERSHEY_SIMPLEX, 1, tuple(color), 4)
+			cv2.putText(img, f.getName(), p.toTuple(), cv2.FONT_HERSHEY_SIMPLEX, 1, tuple(color), 4)
 	def removeDeadFaces(self, missingTicksComparison = 30):
 		self.faces = [f for f in self.faces if f.missingTicks < missingTicksComparison]
-	
+	def getFaceImage(self, inputFrame, f):
+		r = f.face
+		frame = cv2.cvtColor(inputFrame, cv2.COLOR_BGR2GRAY)
+		i = np.copy(frame[r.y:r.y+r.h, r.x:r.x+r.w])
+		return cv2.resize(i,(160, 160), interpolation = cv2.INTER_CUBIC)

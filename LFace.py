@@ -12,6 +12,7 @@ class LFace:
 		self.face = faceRect.clone()
 		self.eyes = [e.clone() for e in eyes]
 		self.id = id
+		self.name = ''
 		self.missingTicks = mt
 		self.velocity = vel
 	def clone(self):
@@ -58,3 +59,5 @@ class LFace:
 		predicted.interpolateTo(newFaces[match[1]], t)
 		self.setAs(predicted)
 		return match[1]
+	def getName(self):
+		return 'person.id'+str(self.id) if self.name == '' else self.name
