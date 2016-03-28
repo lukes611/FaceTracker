@@ -60,7 +60,7 @@ while True:
 		for i, f in enumerate(faceTracker.faces):
 			r = f.face
 			fim = np.copy(frame[r.y:r.y+r.h, r.x:r.x+r.w])
-			db.add(fim, 'luke')
+			db.add(fim, 'jun')
 		doCap = False
 	#show user the augmented image
 	cv2.imshow('frame', frame)
